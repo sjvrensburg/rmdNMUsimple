@@ -2,6 +2,4 @@ name: NMU Beamer Slides
 description: Simple Beamer template for NMU slides.
 create_dir: false
 output:
-  rmdNMUsimple::nmu_beamer:
-    includes:
-      in_header: template.tex
+  rmdNMUsimple::nmu_beamer

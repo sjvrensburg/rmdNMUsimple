@@ -5,9 +5,10 @@
 #' @export
 nmu_beamer <- function(fontsize = "12pt", ...) {
   rmarkdown::beamer_presentation(
-    ...,
+    template = system.file("rmarkdown/templates/slides/resources/template.tex", package = "rmdNMUsimple"),
     pandoc_args = c("--variable", paste0("fontsize=", fontsize)),
-    latex_engine = "pdflatex"
+    latex_engine = "pdflatex",
+    ...
   )
 }
 
@@ -18,9 +19,10 @@ nmu_beamer <- function(fontsize = "12pt", ...) {
 #' @export
 nmu_document <- function(fontsize = "12pt", ...) {
   rmarkdown::pdf_document(
-    ...,
+    template = system.file("rmarkdown/templates/document/resources/template.tex", package = "rmdNMUsimple"),
     pandoc_args = c("--variable", paste0("fontsize=", fontsize)),
-    latex_engine = "pdflatex"
+    latex_engine = "pdflatex",
+    ...
   )
 }
 
@@ -31,8 +33,9 @@ nmu_document <- function(fontsize = "12pt", ...) {
 #' @export
 nmu_assessment <- function(fontsize = "12pt", ...) {
   rmarkdown::pdf_document(
-    ...,
+    template = system.file("rmarkdown/templates/assessment/resources/template.tex", package = "rmdNMUsimple"),
     pandoc_args = c("--variable", paste0("fontsize=", fontsize)),
-    latex_engine = "pdflatex"
+    latex_engine = "pdflatex",
+    ...
   )
 }
