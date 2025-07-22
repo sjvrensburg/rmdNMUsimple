@@ -1,0 +1,17 @@
+---
+title: "Document Title"
+author: "Your Name"
+date: "`r Sys.Date()`"
+fontsize: 12pt
+output: 
+  rmdNMUsimple::nmu_document
+---
+
+# Section 1
+Text here.
+
+$$ Y = \beta_0 + \beta_1 X + \epsilon $$
+
+```{r}
+summary(lm(y ~ x, data = mtcars))
+```

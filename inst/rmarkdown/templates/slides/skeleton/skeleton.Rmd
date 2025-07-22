@@ -1,0 +1,16 @@
+---
+title: "Lecture Title"
+author: "Dr Stefan Janse van Rensburg"
+date: "`r Sys.Date()`"
+fontsize: 12pt
+output: 
+  rmdNMUsimple::nmu_beamer
+---
+
+## Slide 1
+- Bullet point.
+- Math: \( E[Y|X] = \beta_0 + \beta_1 X \)
+
+```{r}
+plot(1:10)
+```

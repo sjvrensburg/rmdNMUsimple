@@ -1,0 +1,7 @@
+name: NMU Assessment
+description: Simple exam template using CTAN exam class.
+create_dir: false
+output:
+  rmdNMUsimple::nmu_assessment:
+    includes:
+      in_header: template.tex
