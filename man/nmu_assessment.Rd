@@ -4,11 +4,9 @@
 \alias{nmu_assessment}
 \title{NMU Assessment Document}
 \usage{
-nmu_assessment(fontsize = "12pt", solutions = FALSE, ...)
+nmu_assessment(solutions = FALSE, ...)
 }
 \arguments{
-\item{fontsize}{Font size (e.g., "12pt")}
-
 \item{solutions}{Include solutions? (logical, default FALSE)}
 
 \item{...}{Additional arguments to pdf_document}

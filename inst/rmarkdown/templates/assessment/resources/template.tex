@@ -59,22 +59,58 @@
 
 $header-includes$
 
-\title{$title$}
-\author{$author$}
-\date{$date$}
-
+% Configure exam class
 \marksnotpoints
 \renewcommand{\droptotalpoints}{
   \hfill
   \fbox{\textbf{Total Marks For Question \thequestion: \totalpoints}}
 }
 
+% For last page reference
+\usepackage{lastpage}
+
+% Configure headers using exam class commands
+\pagestyle{headandfoot}
+\header{\textbf{$if(module_code)$$module_code$$else$Module Code$endif$ $title$}}{}{\textbf{Page \thepage\ of \pageref{LastPage}}}
+\footer{}{}{}
+\headrule
+\footrule
+
 \begin{document}
-\maketitle
+
+% Title page / header information
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Subject:} & $if(module_name)$$module_name$$else$Module Name$endif$ \\
+\textbf{Module Code:} & $if(module_code)$$module_code$$else$MODULE_CODE$endif$ \\
+$if(time_limit)$\textbf{Time Limit:} & $time_limit$ \\$endif$
+$if(due_date)$\textbf{Due Date:} & $due_date$ \\$endif$
+$if(marks)$\textbf{Marks:} & $marks$ \\$endif$
+$if(author)$\textbf{Examiner:} & $author$ \\$endif$
+$if(moderator)$\textbf{Moderator:} & $moderator$ \\$endif$
+\end{tabular}
+
+\vspace{2em}
+
+$if(instructions)$
+\noindent\textbf{Instructions:}
+\begin{itemize}
+\tightlist
+$for(instructions)$
+\item $instructions$
+$endfor$
+\end{itemize}
+\vspace{1em}
+$endif$
 
 % Questions section
 \begin{questions}
-  $body$
+$body$
 \end{questions}
+
+% Include addenda if specified
+$if(addenda)$
+\input{$addenda$}
+$endif$
 
 \end{document}

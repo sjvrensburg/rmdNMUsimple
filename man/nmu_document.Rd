@@ -4,11 +4,9 @@
 \alias{nmu_document}
 \title{NMU General Document}
 \usage{
-nmu_document(fontsize = "12pt", ...)
+nmu_document(...)
 }
 \arguments{
-\item{fontsize}{Font size (e.g., "12pt")}
-
 \item{...}{Additional arguments to pdf_document}
 }
 \description{
