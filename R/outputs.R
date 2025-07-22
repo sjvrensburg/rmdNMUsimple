@@ -4,9 +4,16 @@
 #' @param ... Additional arguments to beamer_presentation
 #' @export
 nmu_beamer <- function(fontsize = "12pt", ...) {
+  logo <- system.file(
+    "rmarkdown/templates/slides/resources/nmu-logo.png",
+    package = "rmdNMUsimple"
+  )
   rmarkdown::beamer_presentation(
     template = system.file("rmarkdown/templates/slides/resources/template.tex", package = "rmdNMUsimple"),
-    pandoc_args = c("--variable", paste0("fontsize=", fontsize)),
+    pandoc_args = c(
+      "--variable", paste0("fontsize=", fontsize),
+      "--variable", sprintf("logo=%s", logo)
+    ),
     latex_engine = "pdflatex",
     ...
   )
@@ -40,6 +47,7 @@ nmu_assessment <- function(fontsize = "12pt", solutions = FALSE, ...) {
   if (solutions) {
     pandoc_args <- c(pandoc_args, "--variable", "solutions=true")
   }
+
   rmarkdown::pdf_document(
     template = system.file("rmarkdown/templates/assessment/resources/template.tex", package = "rmdNMUsimple"),
     pandoc_args = pandoc_args,
