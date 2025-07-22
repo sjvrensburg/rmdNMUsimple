@@ -2,6 +2,4 @@ name: NMU General Document
 description: Simple PDF template for NMU notes/assignments.
 create_dir: false
 output:
-  rmdNMUsimple::nmu_document:
-    includes:
-      in_header: template.tex
+  rmdNMUsimple::nmu_document
