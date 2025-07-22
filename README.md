@@ -25,8 +25,8 @@ The package includes three templates:
 ## Installation
 
 ```r
-# Install from GitHub (when available)
-devtools::install_github("username/rmdNMUsimple")
+# Install from GitHub
+devtools::install_github("sjvrensburg/rmdNMUsimple")
 ```
 
 ## Usage
