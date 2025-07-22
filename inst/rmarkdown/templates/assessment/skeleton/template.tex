@@ -1,4 +1,4 @@
-\documentclass{exam}
+\documentclass[answers, addpoints]{exam}
 \usepackage[$fontsize$]{extsizes}
 \usepackage[margin=1in]{geometry}
 \usepackage{xcolor}
@@ -16,9 +16,19 @@ $header-includes$
 \title{$title$}
 \author{$author$}
 \date{$date$}
+
+\marksnotpoints
+\renewcommand{\droptotalpoints}{
+  \hfill
+  \fbox{\textbf{Total Marks For Question \thequestion: \totalpoints}}
+}
+
 \begin{document}
 \maketitle
+
+% Questions section
 \begin{questions}
-$body$
+  $body$
 \end{questions}
+
 \end{document}

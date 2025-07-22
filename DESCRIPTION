@@ -1,8 +1,11 @@
 Package: rmdNMUsimple
 Title: Simple R Markdown Templates for NMU
 Version: 0.1.0
-Author: Dr Stefan Janse van Rensburg
-Maintainer: Dr Stefan Janse van Rensburg <stefanj@mandela.ac.za>
+Author: Stefan Janse van Rensburg
+Maintainer: Stefan Janse van Rensburg <stefanj@mandela.ac.za>
 Description: Minimal R Markdown templates aligned to NMU branding.
 License: GPL-3
 Depends: rmarkdown
+Encoding: UTF-8
+RoxygenNote: 7.3.2
+Roxygen: list(markdown = TRUE)
