@@ -12,6 +12,19 @@ Text here.
 
 $$ Y = \beta_0 + \beta_1 X + \epsilon $$
 
-```{r}
+```{r eval=FALSE}
 summary(lm(y ~ x, data = mtcars))
 ```
+
+
+::: {.note}
+This is a note box.
+:::
+
+::: {.warning}
+This is a warning box.
+:::
+
+::: {.example}
+This is an example box.
+:::

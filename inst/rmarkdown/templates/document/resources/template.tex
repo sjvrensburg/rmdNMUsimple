@@ -11,6 +11,7 @@
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{hyperref}
 \usepackage{booktabs}
+\usepackage{tcolorbox}
 
 % PANDOC RELATED
 % Add this for tightlist (fixes the Beamer error)
@@ -55,6 +56,13 @@
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\itshape #1}}}
 \providecommand{\pandocbounded}[1]{#1}
+
+% Custom Box Environments
+\definecolor{lightgray}{gray}{0.9}
+\definecolor{gray}{gray}{0.5}
+\newtcolorbox{notebox}{colback=nmublue!10, colframe=nmublue, title=Note, coltitle=white, colbacktitle=nmublue, sharp corners, boxrule=0.5pt}
+\newtcolorbox{warningbox}{colback=nmuyellow!10, colframe=nmuyellow, title=Warning, coltitle=black, colbacktitle=nmuyellow, sharp corners, boxrule=0.5pt}
+\newtcolorbox{examplebox}{colback=gray!10, colframe=lightgray, title=Example, coltitle=black, colbacktitle=lightgray, sharp corners, boxrule=0.5pt}
 
 $header-includes$
 

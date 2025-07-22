@@ -20,7 +20,10 @@ nmu_beamer <- function(fontsize = "12pt", ...) {
 nmu_document <- function(fontsize = "12pt", ...) {
   rmarkdown::pdf_document(
     template = system.file("rmarkdown/templates/document/resources/template.tex", package = "rmdNMUsimple"),
-    pandoc_args = c("--variable", paste0("fontsize=", fontsize)),
+    pandoc_args = c(
+      "--variable", paste0("fontsize=", fontsize),
+      "--lua-filter", system.file("rmarkdown/templates/document/resources/boxes.lua", package = "rmdNMUsimple")
+    ),
     latex_engine = "pdflatex",
     ...
   )
@@ -29,12 +32,17 @@ nmu_document <- function(fontsize = "12pt", ...) {
 #' NMU Assessment Document
 #'
 #' @param fontsize Font size (e.g., "12pt")
+#' @param solutions Include solutions? (logical, default FALSE)
 #' @param ... Additional arguments to pdf_document
 #' @export
-nmu_assessment <- function(fontsize = "12pt", ...) {
+nmu_assessment <- function(fontsize = "12pt", solutions = FALSE, ...) {
+  pandoc_args <- c("--variable", paste0("fontsize=", fontsize))
+  if (solutions) {
+    pandoc_args <- c(pandoc_args, "--variable", "solutions=true")
+  }
   rmarkdown::pdf_document(
     template = system.file("rmarkdown/templates/assessment/resources/template.tex", package = "rmdNMUsimple"),
-    pandoc_args = c("--variable", paste0("fontsize=", fontsize)),
+    pandoc_args = pandoc_args,
     latex_engine = "pdflatex",
     ...
   )

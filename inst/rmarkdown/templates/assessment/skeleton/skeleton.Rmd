@@ -3,6 +3,7 @@ title: "Test Title"
 author: "Dr Stefan Janse van Rensburg"
 date: "`r Sys.Date()`"
 fontsize: 12pt
+solutions: false  # Set to true to include solutions
 output: 
   rmdNMUsimple::nmu_assessment
 ---

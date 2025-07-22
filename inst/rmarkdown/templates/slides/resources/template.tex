@@ -1,11 +1,15 @@
 \documentclass{beamer}
-\usetheme{default}
+\usetheme{Madrid}  % Modern theme with side navigation
+\useoutertheme[subsection=false]{smoothbars}  % Progress bar
+\useinnertheme{rounded}  % Rounded blocks for modernity
 \usepackage{xcolor}
 \definecolor{nmublue}{HTML}{141c2b}
 \definecolor{nmuyellow}{HTML}{ffce00}
-\usecolortheme[named=nmublue]{structure}
-\setbeamercolor{structure}{fg=nmublue}
-\setbeamercolor{block title}{bg=nmuyellow,fg=black}
+\setbeamercolor{structure}{fg=nmublue}  % Main structure color
+\setbeamercolor{title}{fg=white, bg=nmublue}  % Title page
+\setbeamercolor{block title}{fg=black, bg=nmuyellow}  % Block titles
+\setbeamercolor{block body}{bg=nmublue!5}  % Subtle block body
+\setbeamercolor{alerted text}{fg=nmuyellow}  % Alerts/emphasis
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{sansmath}
