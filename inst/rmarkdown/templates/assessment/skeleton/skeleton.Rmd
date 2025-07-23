@@ -3,37 +3,48 @@ title: "Mock Test 3"
 module_name: "Linear Models And Time Series Analysis"
 module_code: "STAT321"
 time_limit: "90 Minutes"
-marks: 50
 author: "Dr Stefan Janse van Rensburg"
+# Uncomment and modify these fields if required. E.g., for an assignment
+# due_date: "Friday, 15 March 2024, 17:00"
+# moderator: "Prof Jane Smith"
+# instructions:
+#  - "Answer all questions in the spaces provided"
+#  - "Show all mathematical working clearly"
+#  - "Submit via Moodle before the due date"
 fontsize: 12pt
-solutions: false
-# addenda: "formula_sheet.tex"  # Optional: LaTeX file to include after questions
 output: 
-  rmdNMUsimple::nmu_assessment
+  rmdNMUsimple::nmu_assessment:
+    solutions: false
 ---
 
-# Theory [25 Marks]
+# Theory Section [25 Marks]
 
-\question[5] Describe heteroskedasticity and its implications for OLS estimation.
+\question[5] Define heteroskedasticity and explain its implications for ordinary least squares estimation.
 
 \begin{solution}
-Heteroskedasticity occurs when the variance of the error terms is not constant across observations.
+Heteroskedasticity occurs when error term variance varies across observations, violating the homoskedasticity assumption. This leads to inefficient coefficient estimates and incorrect standard errors, though estimates remain unbiased.
 \end{solution}
 
-\question[10] Consider the AR(1) process: $Y_t = \alpha_0 + \alpha_1 Y_{t-1} + \nu_t$
+\question[10] Consider the autoregressive process: $Y_t = \alpha_0 + \alpha_1 Y_{t-1} + \nu_t$
 
 \begin{parts}
 \part[5] State the stationarity condition.
+
 \begin{solution}
-The process is stationary if $|\alpha_1| < 1$.
+The process exhibits stationarity when $|\alpha_1| < 1$.
 \end{solution}
 
-\part[5] Derive the unconditional mean when the process is stationary.
+\part[5] Derive the unconditional mean under stationarity.
+
 \begin{solution}
-Taking expectations and solving for $\mu = \frac{\alpha_0}{1-\alpha_1}$.
+Under stationarity: $\mu = \frac{\alpha_0}{1-\alpha_1}$
 \end{solution}
 \end{parts}
 
-# Practical [25 Marks]
+# Practical Component [25 Marks]
 
-\question[25] Complete the practical portion of the test on Moodle.
+\question[25] Complete the computational exercises on Moodle.
+
+\begin{solution}
+Students should demonstrate proficiency in data analysis, model specification, and results interpretation.
+\end{solution}
