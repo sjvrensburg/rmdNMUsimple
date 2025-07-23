@@ -1,20 +1,50 @@
 ---
-title: "Test Title"
+title: "Mock Test 3"
+module_name: "Linear Models And Time Series Analysis"
+module_code: "STAT321"
+time_limit: "90 Minutes"
 author: "Dr Stefan Janse van Rensburg"
-date: "`r Sys.Date()`"
+# Uncomment and modify these fields if required. E.g., for an assignment
+# due_date: "Friday, 15 March 2024, 17:00"
+# moderator: "Prof Jane Smith"
+# instructions:
+#  - "Answer all questions in the spaces provided"
+#  - "Show all mathematical working clearly"
+#  - "Submit via Moodle before the due date"
 fontsize: 12pt
-solutions: false  # Set to true to include solutions
 output: 
-  rmdNMUsimple::nmu_assessment
+  rmdNMUsimple::nmu_assessment:
+    solutions: false
 ---
 
-\question[5] Describe heteroskedasticity.
+# Theory Section [25 Marks]
+
+\question[5] Define heteroskedasticity and explain its implications for ordinary least squares estimation.
 
 \begin{solution}
-Solution here.
+Heteroskedasticity occurs when error term variance varies across observations, violating the homoskedasticity assumption. This leads to inefficient coefficient estimates and incorrect standard errors, though estimates remain unbiased.
 \end{solution}
 
-\question[3] Code example:
-```{r}
-# R code in question
-```
+\question[10] Consider the autoregressive process: $Y_t = \alpha_0 + \alpha_1 Y_{t-1} + \nu_t$
+
+\begin{parts}
+\part[5] State the stationarity condition.
+
+\begin{solution}
+The process exhibits stationarity when $|\alpha_1| < 1$.
+\end{solution}
+
+\part[5] Derive the unconditional mean under stationarity.
+
+\begin{solution}
+Under stationarity: $\mu = \frac{\alpha_0}{1-\alpha_1}$
+\end{solution}
+\end{parts}
+
+# Practical Component [25 Marks]
+
+\question[25] Complete the computational exercises on Moodle.
+
+\begin{solution}
+Students should demonstrate proficiency in data analysis, model specification, and results interpretation.
+\end{solution}

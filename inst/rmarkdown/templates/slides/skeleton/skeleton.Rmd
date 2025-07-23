@@ -1,16 +1,42 @@
 ---
-title: "Lecture Title"
+title: "Index Numbers"
 author: "Dr Stefan Janse van Rensburg"
+institute: "Department of Statistics"
 date: "`r Sys.Date()`"
 fontsize: 12pt
 output: 
   rmdNMUsimple::nmu_beamer
 ---
 
-## Slide 1
-- Bullet point.
-- Math: \( E[Y|X] = \beta_0 + \beta_1 X \)
+## What is an Index Number?
 
-```{r}
-plot(1:10)
+- An index number, or simply an index, indicates the level of a variable relative to its level at another period of time or place.
+
+- The variable of interest can be
+  - a single item, in which case the index is known as a single index or
+  - a group of items, in which case the index is known as a composite index.
+
+- A variable can be tangible (the price of a basket of goods) or intangible (business confidence).
+
+## Definition of An Index Number
+
+For an index that measures the level of a variable in period $t$ relative to some base period,
+
+$$I_t = \frac{\text{Level for period } t}{\text{Level for base period}} \times 100$$
+
+The base period is the point in time, in the past, against which all comparisons are made.
+
+## Example: Mathematical Expression
+
+The Laspeyres price index formula:
+
+$$I_t = \frac{\sum_{i=1}^{k} Q_{i,\text{base}} P_{i,t}}{\sum_{i=1}^{k} Q_{i,\text{base}} P_{i,\text{base}}} \times 100$$
+
+```{r eval=FALSE}
+# R code example
+laspeyres_index <- function(quantities_base, prices_base, prices_t) {
+  numerator <- sum(quantities_base * prices_t)
+  denominator <- sum(quantities_base * prices_base)
+  return((numerator / denominator) * 100)
+}
 ```

@@ -57,12 +57,39 @@
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\itshape #1}}}
 \providecommand{\pandocbounded}[1]{#1}
 
-% Custom Box Environments
+% Custom Box Environments with optional custom titles
 \definecolor{lightgray}{gray}{0.9}
 \definecolor{gray}{gray}{0.5}
-\newtcolorbox{notebox}{colback=nmublue!10, colframe=nmublue, title=Note, coltitle=white, colbacktitle=nmublue, sharp corners, boxrule=0.5pt}
-\newtcolorbox{warningbox}{colback=nmuyellow!10, colframe=nmuyellow, title=Warning, coltitle=black, colbacktitle=nmuyellow, sharp corners, boxrule=0.5pt}
-\newtcolorbox{examplebox}{colback=gray!10, colframe=lightgray, title=Example, coltitle=black, colbacktitle=lightgray, sharp corners, boxrule=0.5pt}
+
+\newtcolorbox{notebox}[1][Note]{
+  colback=nmublue!10,
+  colframe=nmublue,
+  title=#1,
+  coltitle=white,
+  colbacktitle=nmublue,
+  sharp corners,
+  boxrule=0.5pt
+}
+
+\newtcolorbox{warningbox}[1][Warning]{
+  colback=nmuyellow!10,
+  colframe=nmuyellow,
+  title=#1,
+  coltitle=black,
+  colbacktitle=nmuyellow,
+  sharp corners,
+  boxrule=0.5pt
+}
+
+\newtcolorbox{examplebox}[1][Example]{
+  colback=gray!10,
+  colframe=lightgray,
+  title=#1,
+  coltitle=black,
+  colbacktitle=lightgray,
+  sharp corners,
+  boxrule=0.5pt
+}
 
 $header-includes$
 

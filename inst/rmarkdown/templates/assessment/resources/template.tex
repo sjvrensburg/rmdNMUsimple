@@ -1,10 +1,23 @@
-\documentclass[addpoints$if(solutions)$,answers$endif$]{exam}
+\documentclass[addpoints]{exam}
+
+% Solution handling through variable existence checking
+$if(solutions)$
+\printanswers
+$else$
+\noprintanswers
+$endif$
+
+% Font configuration and document setup
 \usepackage[$fontsize$]{extsizes}
 \usepackage[margin=1in]{geometry}
+
+% NMU corporate identity colours
 \usepackage{xcolor}
 \definecolor{nmublue}{HTML}{141c2b}
 \definecolor{nmuyellow}{HTML}{ffce00}
 \color{nmublue}
+
+% Essential packages for academic documents
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{sansmath}
@@ -13,8 +26,7 @@
 \usepackage{hyperref}
 \usepackage{booktabs}
 
-% PANDOC RELATED
-% Add this for tightlist (fixes the Beamer error)
+% Pandoc compatibility definitions
 \newcommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \usepackage{color}
@@ -25,6 +37,8 @@
 \usepackage{framed}
 \definecolor{shadecolor}{RGB}{248,248,248}
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+
+% Syntax highlighting command definitions
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\itshape #1}}}
 \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
@@ -57,24 +71,62 @@
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\itshape #1}}}
 \providecommand{\pandocbounded}[1]{#1}
 
+% User-defined header customisations
 $header-includes$
 
-\title{$title$}
-\author{$author$}
-\date{$date$}
-
+% Exam class marking configuration with automatic calculation
 \marksnotpoints
 \renewcommand{\droptotalpoints}{
   \hfill
   \fbox{\textbf{Total Marks For Question \thequestion: \totalpoints}}
 }
 
-\begin{document}
-\maketitle
+% Page reference handling
+\usepackage{lastpage}
 
-% Questions section
+% Header and footer specification
+\pagestyle{headandfoot}
+\header{\textbf{$if(module_code)$$module_code$$else$Module Code$endif$ $title$}}{}{\textbf{Page \thepage\ of \pageref{LastPage}}}
+\footer{}{}{}
+\headrule
+\footrule
+
+\begin{document}
+
+% Assessment metadata presentation with automatic mark calculation
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Subject:} & $if(module_name)$$module_name$$else$Module Name$endif$ \\
+\textbf{Module Code:} & $if(module_code)$$module_code$$else$MODULE\_CODE$endif$ \\
+$if(time_limit)$\textbf{Time Limit:} & $time_limit$ \\$endif$
+$if(due_date)$\textbf{Due Date:} & $due_date$ \\$endif$
+\textbf{Total Marks:} & \numpoints \\
+$if(author)$\textbf{Examiner:} & $author$ \\$endif$
+$if(moderator)$\textbf{Moderator:} & $moderator$ \\$endif$
+\end{tabular}
+
+\vspace{2em}
+
+% Optional instructional content
+$if(instructions)$
+\noindent\textbf{Instructions:}
+\begin{itemize}
+\tightlist
+$for(instructions)$
+\item $instructions$
+$endfor$
+\end{itemize}
+\vspace{1em}
+$endif$
+
+% Primary questions environment
 \begin{questions}
-  $body$
+$body$
 \end{questions}
+
+% Supplementary materials inclusion
+$if(addenda)$
+\input{$addenda$}
+$endif$
 
 \end{document}

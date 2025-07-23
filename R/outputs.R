@@ -1,12 +1,17 @@
 #' NMU Beamer Presentation
 #'
-#' @param fontsize Font size (e.g., "12pt")
 #' @param ... Additional arguments to beamer_presentation
 #' @export
-nmu_beamer <- function(fontsize = "12pt", ...) {
+nmu_beamer <- function(...) {
+  logo <- system.file(
+    "rmarkdown/templates/slides/resources/nmu-logo.png",
+    package = "rmdNMUsimple"
+  )
   rmarkdown::beamer_presentation(
     template = system.file("rmarkdown/templates/slides/resources/template.tex", package = "rmdNMUsimple"),
-    pandoc_args = c("--variable", paste0("fontsize=", fontsize)),
+    pandoc_args = c(
+      "--variable", sprintf("logo=%s", logo)
+    ),
     latex_engine = "pdflatex",
     ...
   )
@@ -14,14 +19,12 @@ nmu_beamer <- function(fontsize = "12pt", ...) {
 
 #' NMU General Document
 #'
-#' @param fontsize Font size (e.g., "12pt")
 #' @param ... Additional arguments to pdf_document
 #' @export
-nmu_document <- function(fontsize = "12pt", ...) {
-  rmarkdown::pdf_document(
+nmu_document <- function(...) {
+  bookdown::pdf_document2(
     template = system.file("rmarkdown/templates/document/resources/template.tex", package = "rmdNMUsimple"),
     pandoc_args = c(
-      "--variable", paste0("fontsize=", fontsize),
       "--lua-filter", system.file("rmarkdown/templates/document/resources/boxes.lua", package = "rmdNMUsimple")
     ),
     latex_engine = "pdflatex",
@@ -31,19 +34,36 @@ nmu_document <- function(fontsize = "12pt", ...) {
 
 #' NMU Assessment Document
 #'
-#' @param fontsize Font size (e.g., "12pt")
 #' @param solutions Include solutions? (logical, default FALSE)
 #' @param ... Additional arguments to pdf_document
 #' @export
-nmu_assessment <- function(fontsize = "12pt", solutions = FALSE, ...) {
-  pandoc_args <- c("--variable", paste0("fontsize=", fontsize))
-  if (solutions) {
+nmu_assessment <- function(solutions = FALSE, ...) {
+  # Initialise pandoc arguments vector
+  pandoc_args <- character(0)
+
+  # Conditionally define solutions variable for pandoc processing
+  if (isTRUE(solutions)) {
     pandoc_args <- c(pandoc_args, "--variable", "solutions=true")
   }
-  rmarkdown::pdf_document(
-    template = system.file("rmarkdown/templates/assessment/resources/template.tex", package = "rmdNMUsimple"),
-    pandoc_args = pandoc_args,
-    latex_engine = "pdflatex",
-    ...
-  )
+
+  # Process additional function arguments
+  args <- list(...)
+
+  # Handle addenda file specification with path normalisation
+  if ("addenda" %in% names(args)) {
+    addenda_path <- normalizePath(args$addenda, mustWork = FALSE)
+    pandoc_args <- c(pandoc_args, "--variable", paste0("addenda=", addenda_path))
+    args$addenda <- NULL
+  }
+
+  # Construct pdf_document with automated mark calculation
+  do.call(rmarkdown::pdf_document, c(
+    list(
+      template = system.file("rmarkdown/templates/assessment/resources/template.tex",
+                             package = "rmdNMUsimple"),
+      pandoc_args = pandoc_args,
+      latex_engine = "pdflatex"
+    ),
+    args
+  ))
 }

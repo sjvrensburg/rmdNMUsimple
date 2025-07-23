@@ -4,11 +4,9 @@
 \alias{nmu_beamer}
 \title{NMU Beamer Presentation}
 \usage{
-nmu_beamer(fontsize = "12pt", ...)
+nmu_beamer(...)
 }
 \arguments{
-\item{fontsize}{Font size (e.g., "12pt")}
-
 \item{...}{Additional arguments to beamer_presentation}
 }
 \description{

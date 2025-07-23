@@ -5,7 +5,7 @@ Author: Stefan Janse van Rensburg
 Maintainer: Stefan Janse van Rensburg <stefanj@mandela.ac.za>
 Description: Minimal R Markdown templates aligned to NMU branding.
 License: GPL-3
-Depends: rmarkdown
+Depends: rmarkdown, bookdown
 Encoding: UTF-8
 RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)

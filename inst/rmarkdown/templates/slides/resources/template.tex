@@ -1,15 +1,7 @@
 \documentclass{beamer}
-\usetheme{Madrid}  % Modern theme with side navigation
-\useoutertheme[subsection=false]{smoothbars}  % Progress bar
-\useinnertheme{rounded}  % Rounded blocks for modernity
+
+% Essential packages
 \usepackage{xcolor}
-\definecolor{nmublue}{HTML}{141c2b}
-\definecolor{nmuyellow}{HTML}{ffce00}
-\setbeamercolor{structure}{fg=nmublue}  % Main structure color
-\setbeamercolor{title}{fg=white, bg=nmublue}  % Title page
-\setbeamercolor{block title}{fg=black, bg=nmuyellow}  % Block titles
-\setbeamercolor{block body}{bg=nmublue!5}  % Subtle block body
-\setbeamercolor{alerted text}{fg=nmuyellow}  % Alerts/emphasis
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{sansmath}
@@ -18,11 +10,88 @@
 \usepackage{hyperref}
 \usepackage{booktabs}
 
-% PANDOC RELATED
-% Add this for tightlist (fixes the Beamer error)
-\newcommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\usepackage{color}
+% NMU brand colours
+\definecolor{nmublue}{HTML}{141c2b}
+\definecolor{nmuyellow}{HTML}{ffce00}
+\definecolor{nmuwhite}{HTML}{ffffff}
+
+% Clean minimal theme
+\usetheme{default}
+\usecolortheme{default}
+
+% Remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% Set primary colours
+\setbeamercolor{structure}{fg=nmublue}
+\setbeamercolor{title}{fg=nmublue}
+\setbeamercolor{frametitle}{fg=nmublue}
+\setbeamercolor{normal text}{fg=nmublue}
+
+% Clean title page template
+\setbeamertemplate{title page}{
+  \vbox{}
+  \vfill
+  \begingroup
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=8pt,center]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \vskip2em\par
+    \includegraphics[width=0.6\textwidth]{$logo$}\par
+  \endgroup
+  \vfill
+}
+
+% Simplified frame title
+\setbeamertemplate{frametitle}{
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth,leftskip=.3cm,rightskip=.3cm,ht=2.5ex,dp=1.5ex]{frametitle}
+    \usebeamerfont{frametitle}\insertframetitle
+  \end{beamercolorbox}
+}
+
+% Footer with NMU coloured lines and slide numbers (based on original template)
+\defbeamertemplate*{footline}{nmu footline}{%
+    \ifnum\insertpagenumber=1
+    \hbox{%
+        \begin{beamercolorbox}[wd=\paperwidth,ht=.8ex,dp=1ex,center]{}%
+      % empty environment for title page
+        \end{beamercolorbox}%
+    }%
+    \vskip0pt%
+    \else%
+        \Tiny{%
+            \hfill%
+            \vspace*{1pt}%
+            \insertframenumber/\inserttotalframenumber \hspace*{0.1cm}%
+            \newline%
+            \color{nmublue}{\rule{\paperwidth}{0.4mm}}\newline%
+            \color{nmuyellow}{\rule{\paperwidth}{0.4mm}}%
+        }%
+    \fi%
+}
+
+% Clean itemisation
+\setbeamertemplate{itemize items}[circle]
+\setbeamercolor{itemize item}{fg=nmublue}
+\setbeamercolor{itemize subitem}{fg=nmublue}
+\setbeamercolor{enumerate item}{fg=nmublue}
+
+% Pandoc compatibility
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
 \newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
@@ -30,44 +99,54 @@
 \usepackage{framed}
 \definecolor{shadecolor}{RGB}{248,248,248}
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+
+% Syntax highlighting commands
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\itshape #1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\itshape #1}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\itshape #1}}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\itshape #1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\itshape #1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\NormalTok}[1]{#1}
 \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\itshape #1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
 \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\itshape #1}}}
-\providecommand{\pandocbounded}[1]{#1}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\pandocbounded}[1]{#1}
 
 $header-includes$
 
-\title{$title$}
+\title[$shorttitle$]{$title$}
+\subtitle{$subtitle$}
 \author{$author$}
+\institute{$institute$}
 \date{$date$}
+
 \begin{document}
-\maketitle
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
 $body$
+
 \end{document}
