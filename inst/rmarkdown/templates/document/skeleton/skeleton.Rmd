@@ -4,10 +4,15 @@ author: "Your Name"
 date: "`r Sys.Date()`"
 fontsize: 12pt
 output: 
-  rmdNMUsimple::nmu_document
+  rmdNMUsimple::nmu_document:
+    keep_tex: true
+# Remeber, you can always load additional LaTeX packages:
+# header-includes:
+#   - \usepackage{somethingcool}
 ---
 
 # Section 1
+
 Text here.
 
 $$ Y = \beta_0 + \beta_1 X + \epsilon $$
@@ -17,14 +22,65 @@ summary(lm(y ~ x, data = mtcars))
 ```
 
 
-::: {.note}
+::: {.notebox}
 This is a note box.
 :::
 
-::: {.warning}
+::: {.warningbox name="DANGER"}
 This is a warning box.
 :::
 
-::: {.example}
+::: {.examplebox}
 This is an example box.
+:::
+
+:::{.examplebox name="Descriptive Analytics in Practice"}
+Consider retail transaction data spanning multiple quarters. Descriptive analytics might reveal:
+```{r eval=TRUE}
+# Summary statistics for quarterly sales
+quarterly_sales <- data.frame(
+  Quarter = c("Q1", "Q2", "Q3", "Q4"),
+  Revenue = c(1.2e6, 1.8e6, 1.5e6, 2.1e6),
+  Transactions = c(5200, 7800, 6100, 8900)
+)
+# Descriptive measures
+summary(quarterly_sales$Revenue)
+sd(quarterly_sales$Revenue)
+cor(quarterly_sales$Revenue, quarterly_sales$Transactions)
+```
+These measures quantify central tendencies, variability, and associations without inferring causation or predicting future values.
+:::
+
+:::{.examplebox name="Data Import and Initial Assessment"}
+```{r}
+# Simulate a realistic data import scenario
+set.seed(123)
+sales_data <- data.frame(
+  date = seq(as.Date("2023-01-01"), as.Date("2023-12-31"),
+             by="day"),
+  revenue = rnorm(365, 10000, 2000),
+  region = sample(c("North", "South", "East", "West"),
+    365, replace=TRUE),
+  product_line = sample(
+    c("A", "B", "C"), 365, replace=TRUE)
+)
+
+# Introduce realistic data quality issues
+sales_data$revenue[sample(365, 10)] <- NA  # Missing values
+sales_data$revenue[sample(365, 5)] <- -1000  # Impossible
+# Initial data assessment
+str(sales_data)
+```
+```{r eval=FALSE}
+summary(sales_data)
+```
+```{r echo=FALSE, results='asis'}
+# We need to be careful with tables and figures since boxes, like
+# examplebox, do not allow latex float environments.
+cat("\\begin{center}\\begingroup\\fontsize{9}{11}\\selectfont")
+summary(sales_data) |>
+  knitr::kable(digits = 3, format = "latex", booktabs = TRUE) |>
+  cat()
+cat("\\endgroup\\end{center}")
+```
 :::
