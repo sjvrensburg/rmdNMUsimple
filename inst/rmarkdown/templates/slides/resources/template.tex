@@ -1,10 +1,6 @@
 \documentclass{beamer}
 
-% -- THEME AND PACKAGES --
-\usetheme{Madrid} % Base theme, heavily customized below
-\useoutertheme[subsection=false]{smoothbars}
-\useinnertheme{rounded}
-
+% Essential packages
 \usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -13,103 +9,88 @@
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{hyperref}
 \usepackage{booktabs}
-\usepackage{tikz}
 
-% -- NMU BRAND COLORS --
+% NMU brand colours
 \definecolor{nmublue}{HTML}{141c2b}
 \definecolor{nmuyellow}{HTML}{ffce00}
-\definecolor{nmugrey}{HTML}{999999}
 \definecolor{nmuwhite}{HTML}{ffffff}
 
-% -- BEAMER COLOR SCHEME --
-\setbeamercolor{structure}{fg=nmublue} % Default structure color
-\setbeamercolor{palette primary}{bg=nmublue, fg=nmuwhite}
-\setbeamercolor{palette secondary}{bg=nmublue, fg=nmuwhite}
-\setbeamercolor{palette tertiary}{bg=nmublue, fg=nmuwhite}
-\setbeamercolor{palette quaternary}{bg=nmublue, fg=nmuwhite}
-
-\setbeamercolor{title}{fg=nmublue, bg=nmuwhite}
-\setbeamercolor{frametitle}{fg=nmublue, bg=nmuwhite}
-\setbeamercolor{block title}{fg=nmublue, bg=nmuyellow!20}
-\setbeamercolor{block body}{bg=nmuyellow!5}
-\setbeamercolor{alerted text}{fg=nmuyellow}
-
-% -- BEAMER FONT & ELEMENT TEMPLATES --
+% Clean minimal theme
+\usetheme{default}
+\usecolortheme{default}
 
 % Remove navigation symbols
 \setbeamertemplate{navigation symbols}{}
 
-% Title Page Customization
+% Set primary colours
+\setbeamercolor{structure}{fg=nmublue}
+\setbeamercolor{title}{fg=nmublue}
+\setbeamercolor{frametitle}{fg=nmublue}
+\setbeamercolor{normal text}{fg=nmublue}
+
+% Clean title page template
 \setbeamertemplate{title page}{
   \vbox{}
   \vfill
   \begingroup
     \centering
-    \begin{minipage}{\textwidth}
-      \centerline{\includegraphics[width=0.6\textwidth]{$logo$}}\par % Centered logo
-      \vspace{2em}
-      {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}
-      \vspace{0.5em}
-      {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}
-      \vspace{1.5em}
-      {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par}
-      \vspace{0.5em}
-      {\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\par}
-      \vspace{0.5em}
-      {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par}
-    \end{minipage}
+    \begin{beamercolorbox}[sep=8pt,center]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=8pt,center]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \vskip2em\par
+    \includegraphics[width=0.6\textwidth]{$logo$}\par
   \endgroup
   \vfill
 }
 
-\makeatletter
-\setbeamertemplate{headline}{
-  \ifbeamer@inframe
-    \ifx\insertframetitle\@empty
-      % No frame title - suppress headline
-    \else
-      % Frame has title - show normal headline
-      \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,%
-        leftskip=.3cm,rightskip=.3cm plus1fil]{section in head/foot}
-        \usebeamerfont{section in head/foot}\insertsectionnavigationhorizontal{\paperwidth}{}{}%
-      \end{beamercolorbox}%
-    \fi
-  \fi
-}
-\makeatother
-
-% Custom Frame Title
+% Simplified frame title
 \setbeamertemplate{frametitle}{
-  \ifx\insertframetitle\empty
-    % No title - suppress everything
-  \else
-    % Has title - show yellow bar and title
-    \nointerlineskip
-    \begin{beamercolorbox}[wd=\paperwidth,ht=2pt]{palette quaternary}
-      \color{nmuyellow}\rule{\paperwidth}{2pt}
-    \end{beamercolorbox}
-    \begin{beamercolorbox}[wd=\textwidth,left,ht=2.5ex,dp=1.5ex]{frametitle}
-        \usebeamerfont{frametitle}\insertframetitle
-    \end{beamercolorbox}
-  \fi
-}
-
-% Custom Footer (Footline)
-% Creates the blue bar with author, title, and frame number
-\setbeamertemplate{footline}{
-  \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex]{palette primary}
-    \hspace{1em}\insertshortauthor \hfill \insertshorttitle \hfill
-    \insertframenumber{}/\inserttotalframenumber\hspace{1em}
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth,leftskip=.3cm,rightskip=.3cm,ht=2.5ex,dp=1.5ex]{frametitle}
+    \usebeamerfont{frametitle}\insertframetitle
   \end{beamercolorbox}
 }
 
-% Itemize and Enumerate Styling
-\setbeamertemplate{itemize item}{\textcolor{nmuyellow}{\textbullet}}
-\setbeamertemplate{itemize subitem}{\textcolor{nmuyellow}{\textendash}}
+% Footer with NMU coloured lines and slide numbers (based on original template)
+\defbeamertemplate*{footline}{nmu footline}{%
+    \ifnum\insertpagenumber=1
+    \hbox{%
+        \begin{beamercolorbox}[wd=\paperwidth,ht=.8ex,dp=1ex,center]{}%
+      % empty environment for title page
+        \end{beamercolorbox}%
+    }%
+    \vskip0pt%
+    \else%
+        \Tiny{%
+            \hfill%
+            \vspace*{1pt}%
+            \insertframenumber/\inserttotalframenumber \hspace*{0.1cm}%
+            \newline%
+            \color{nmublue}{\rule{\paperwidth}{0.4mm}}\newline%
+            \color{nmuyellow}{\rule{\paperwidth}{0.4mm}}%
+        }%
+    \fi%
+}
+
+% Clean itemisation
+\setbeamertemplate{itemize items}[circle]
+\setbeamercolor{itemize item}{fg=nmublue}
+\setbeamercolor{itemize subitem}{fg=nmublue}
 \setbeamercolor{enumerate item}{fg=nmublue}
 
-% -- PANDOC COMPATIBILITY & SYNTAX HIGHLIGHTING --
-% This section is taken from your provided template to ensure Pandoc compatibility
+% Pandoc compatibility
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -118,6 +99,8 @@
 \usepackage{framed}
 \definecolor{shadecolor}{RGB}{248,248,248}
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+
+% Syntax highlighting commands
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
