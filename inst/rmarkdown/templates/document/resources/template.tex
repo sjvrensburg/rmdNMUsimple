@@ -3,6 +3,7 @@
 \usepackage{xcolor}
 \definecolor{nmublue}{HTML}{141c2b}
 \definecolor{nmuyellow}{HTML}{ffce00}
+\definecolor{crimson}{HTML}{DC143C}
 \color{nmublue}
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -11,7 +12,12 @@
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{hyperref}
 \usepackage{booktabs}
-\usepackage{tcolorbox}
+\usepackage[most]{tcolorbox}
+
+\usepackage{parskip}
+\usepackage{setspace}
+
+\onehalfspacing
 
 % PANDOC RELATED
 % Add this for tightlist (fixes the Beamer error)
@@ -57,11 +63,13 @@
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\itshape #1}}}
 \providecommand{\pandocbounded}[1]{#1}
 
-% Custom Box Environments with optional custom titles
+% Custom Box Environments with verbatim compatibility
 \definecolor{lightgray}{gray}{0.9}
 \definecolor{gray}{gray}{0.5}
 
 \newtcolorbox{notebox}[1][Note]{
+  enhanced,
+  %parbox=false,
   colback=nmublue!10,
   colframe=nmublue,
   title=#1,
@@ -72,6 +80,20 @@
 }
 
 \newtcolorbox{warningbox}[1][Warning]{
+  enhanced,
+  %parbox=false,
+  colback=crimson!10,
+  colframe=crimson,
+  title=#1,
+  coltitle=white,
+  colbacktitle=crimson,
+  sharp corners,
+  boxrule=0.5pt
+}
+
+\newtcolorbox{ideabox}[1][Idea]{
+  enhanced,
+  %parbox=false,
   colback=nmuyellow!10,
   colframe=nmuyellow,
   title=#1,
@@ -82,6 +104,8 @@
 }
 
 \newtcolorbox{examplebox}[1][Example]{
+  enhanced,
+  %parbox=false,
   colback=gray!10,
   colframe=lightgray,
   title=#1,
