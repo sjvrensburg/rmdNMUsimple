@@ -1,6 +1,7 @@
 ---
-title: "Index Numbers"
-author: "Dr Stefan Janse van Rensburg"
+title: "TOPIC TITLE"
+subtitle: "SUBTITLE"
+author: "AUTHOR"
 institute: "Department of Statistics"
 date: "`r Sys.Date()`"
 fontsize: 12pt
@@ -8,25 +9,36 @@ output:
   rmdNMUsimple::nmu_beamer
 ---
 
-## What is an Index Number?
+# Section 1
 
-- An index number, or simply an index, indicates the level of a variable relative to its level at another period of time or place.
+## Bullet Points
 
-- The variable of interest can be
-  - a single item, in which case the index is known as a single index or
-  - a group of items, in which case the index is known as a composite index.
+- We can use itemised lists as with any standard set of R Markdown Beamer slides
+- Here is another point...
 
-- A variable can be tangible (the price of a basket of goods) or intangible (business confidence).
+  - You can also have nested items
+  - More!
 
-## Definition of An Index Number
+## Numbered Lists
 
-For an index that measures the level of a variable in period $t$ relative to some base period,
+1. We can use enumerated lists as with any standard set of R Markdown Beamer slides
+2. Here is another point...
 
-$$I_t = \frac{\text{Level for period } t}{\text{Level for base period}} \times 100$$
+  1. You can also have nested items
+  2. More!
+  
+## {.plain}
 
-The base period is the point in time, in the past, against which all comparisons are made.
+1. You can even mix the two
+  
+  - Something
+  - Something
+  
+2. Something else
 
-## Example: Mathematical Expression
+# Section 2
+
+## Mathematical Expressions
 
 The Laspeyres price index formula:
 
@@ -39,4 +51,31 @@ laspeyres_index <- function(quantities_base, prices_base, prices_t) {
   denominator <- sum(quantities_base * prices_base)
   return((numerator / denominator) * 100)
 }
+```
+
+## Customisation
+
+Remember, you can add your own header includes by editing the YAML header of the R Markdown document.
+\footnotesize
+```
+---
+title: "TOPIC TITLE"
+subtitle: "SUBTITLE"
+author: "AUTHOR"
+institute: "Department of Statistics"
+date: "THE BEGINNING OF TIME"
+fontsize: 12pt
+output: 
+  rmdNMUsimple::nmu_beamer
+# Custom includes
+header-includes:
+  - \usepackage{booktabs}
+  - \usepackage{longtable}
+  - \usepackage{etoolbox}
+  - \AtBeginEnvironment{Shaded}{\small}
+  - \usepackage{tikz}
+  - \usetikzlibrary{arrows.meta,calc,intersections,decorations.markings}
+  - \usepackage{array}
+  - \usepackage{ragged2e}
+---
 ```
