@@ -5,6 +5,7 @@ date: "`r Sys.Date()`"
 fontsize: 12pt
 output: 
   rmdNMUsimple::nmu_document:
+    # You can keep the LaTeX if you want. Useful for manual modification.
     keep_tex: true
 # Remeber, you can always load additional LaTeX packages:
 # header-includes:
@@ -84,3 +85,5 @@ summary(sales_data) |>
 cat("\\endgroup\\end{center}")
 ```
 :::
+
+Do keep in mind that boxes **DO NOT** span accross multiple pages.
