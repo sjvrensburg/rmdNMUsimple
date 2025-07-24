@@ -1,12 +1,12 @@
 ---
 title: "Mock Test 3"
-module_name: "Linear Models And Time Series Analysis"
-module_code: "STAT321"
+module_name: "SOME MODULE'S NAME"
+module_code: "SOME MODULE CODE"
 time_limit: "90 Minutes"
-author: "Dr Stefan Janse van Rensburg"
+author: "The Examiner"
 # Uncomment and modify these fields if required. E.g., for an assignment
 # due_date: "Friday, 15 March 2024, 17:00"
-# moderator: "Prof Jane Smith"
+moderator: "Prof Jane Smith"
 # instructions:
 #  - "Answer all questions in the spaces provided"
 #  - "Show all mathematical working clearly"
@@ -14,10 +14,39 @@ author: "Dr Stefan Janse van Rensburg"
 fontsize: 12pt
 output: 
   rmdNMUsimple::nmu_assessment:
-    solutions: false
+    solutions: true
 ---
 
 # Theory Section [25 Marks]
+
+\question[10] This is a question.
+
+\begin{solution}
+Solution environments contain the answers to questions. Switching solutions to true in the YAML will cause solutions to render in the knitted PDF document.
+\end{solution}
+
+\question We can have sub-questions, each with their own solution.
+
+\begin{parts}
+\part[1] Part 1's question.
+\begin{solution}
+Part 1's model answer.
+\end{solution}
+
+
+\part[1] Part 2's question.
+\begin{solution}
+Part 2's model answer.
+\end{solution}
+
+\part[1] Part 3's question.
+\begin{solution}
+Part 3's model answer.
+\end{solution}
+
+\end{parts}
+
+\droptotalpoints
 
 \question[5] Define heteroskedasticity and explain its implications for ordinary least squares estimation.
 
@@ -25,7 +54,7 @@ output:
 Heteroskedasticity occurs when error term variance varies across observations, violating the homoskedasticity assumption. This leads to inefficient coefficient estimates and incorrect standard errors, though estimates remain unbiased.
 \end{solution}
 
-\question[10] Consider the autoregressive process: $Y_t = \alpha_0 + \alpha_1 Y_{t-1} + \nu_t$
+\question Consider the autoregressive process: $Y_t = \alpha_0 + \alpha_1 Y_{t-1} + \nu_t$
 
 \begin{parts}
 \part[5] State the stationarity condition.
@@ -40,6 +69,8 @@ The process exhibits stationarity when $|\alpha_1| < 1$.
 Under stationarity: $\mu = \frac{\alpha_0}{1-\alpha_1}$
 \end{solution}
 \end{parts}
+
+\droptotalpoints
 
 # Practical Component [25 Marks]
 
