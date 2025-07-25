@@ -95,17 +95,26 @@ The simplification process necessitated removing several advanced features:
 
 **Important**: This package does not implement NMU's official Nunito Sans font family. Documents utilise standard sans-serif fonts available across LaTeX installations. Institutions requiring strict brand compliance should consider this limitation when adopting the package.
 
-## 6 Support and Maintenance
+## 6 Important: Chunk Naming Convention
 
-### 6.1 Bug Reports and Feature Requests
+When using captions with `kable()`, avoid underscores in chunk labels:
+
+✅ **Good**: `{r datatable}`, `{r summaryinfo}`  
+❌ **Bad**: `{r data_table}`, `{r summary_info}`
+
+This prevents cross-reference processing conflicts.
+
+## 7 Support and Maintenance
+
+### 7.1 Bug Reports and Feature Requests
 
 Submit issues through the GitHub repository: https://github.com/sjvrensburg/rmdNMUsimple/issues
 
-### 6.2 Contributing
+### 7.2 Contributing
 
 The package welcomes contributions that maintain the core philosophy of simplicity and reliability. Please ensure all modifications preserve cross-platform compatibility and minimal dependency requirements.
 
-## 7 License and Attribution
+## 8 License and Attribution
 
 **License**: GNU General Public License (≥ 3)  
 **Author**: Dr Stefan Janse van Rensburg  
